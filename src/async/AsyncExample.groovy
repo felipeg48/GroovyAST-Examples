@@ -8,20 +8,22 @@ class Sample{
 
     @Async
     def expensiveMethod(){
+		println "[${Thread.currentThread()}] Started expensiveMethod"
         sleep 15000
-        println "[New Thread] Finished expensiveMethod..."
+        println "[${Thread.currentThread()}] Finished expensiveMethod..."
     }
 
     @Async
-    def other(){
+    def otherMethod(){
+		println "[${Thread.currentThread()}] Started otherMethod"
         sleep 5000
-        println "[Another Thread] Hello"
+        println "[${Thread.currentThread()}] Finished otherMethod"
     }
 }
 
-println "[Main] Start"
+println "[${Thread.currentThread()}] Start"
 def sample = new Sample(name:"Felipe",phone:"1800-GROOVY")
 sample.expensiveMethod()
-sample.other()
-println "[Main] Finished"
+sample.otherMethod()
+println "[${Thread.currentThread()}] Finished"
 
